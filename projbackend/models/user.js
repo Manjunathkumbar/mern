@@ -55,14 +55,14 @@ const uuidv1 = require('uuid/v1');
 
   
 
-  userSchema.method= {
+  userSchema.methods= {
 
-    authenticate : function(password){
+    authenticate : function(plainpassword){
         return this.securedPassword(plainpassword) === this.encry_password
     },
 
       securedPassword : function(plainpassword){
-          if(!password) return "";
+          if(!plainpassword) return "";
           try {
               return crypto.createHmac('sha256', this.salt)
               .update('plainpassword')
@@ -73,4 +73,5 @@ const uuidv1 = require('uuid/v1');
           }
   }
   }
+  
   module.exports=mongoose.model("User", userSchema)

@@ -4,6 +4,18 @@ const app = express();
 
 const port = 3000;
 
+const admin=(req, res)=>{
+    return res.send("Hi Admin")
+}
+
+const isAdmin=(req, res, next)=>{
+    console.log("isAdmin running");
+    next();
+}
+
+
+app.get('/admin',isAdmin, admin)
+
 app.get('/', (req, res)=>{
     return res.send("your visting home page")
 })
@@ -15,6 +27,8 @@ app.get('/signup', (req, res)=>{
 app.get('/manjunath', (req, res)=>{
     return res.send("Hi Manjunath")
 })
+
+
 
 app.get('/signout', (req, res)=>{
     return res.send("Your are signed out successfully")
