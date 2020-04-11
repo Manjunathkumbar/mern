@@ -29,8 +29,7 @@ const uuidv1 = require('uuid/v1');
     //Tcome back here
     encry_password:{
         type: String,
-        required:true,
-    
+        required: true
     },
     salt:String,
     role:{
@@ -43,8 +42,9 @@ const uuidv1 = require('uuid/v1');
     } 
   }, {timestamps:true});
 
-  userSchema.virtual("password")
-      .set(function(password){
+  userSchema
+    .virtual("password")
+    .set(function(password){
         this._password=password
         this.salt =uuidv1()
         this.encry_password=this.securedPassword(password)

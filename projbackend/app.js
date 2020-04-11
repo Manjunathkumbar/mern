@@ -27,7 +27,7 @@ app.use(cookieparser());
 app.use(cors());
 
 //Routes
-app.use("/api", authRoutes);
+app.use("/api/v1", authRoutes);
 
 //PORT
 const port = process.env.PORT || 3001;
