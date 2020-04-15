@@ -5,7 +5,10 @@ const bodyparser= require('body-parser')
 const cookieparser= require('cookie-parser')
 const cors= require('cors')
 
+//My routes
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+
 
 const app = express();
 
@@ -28,6 +31,7 @@ app.use(cors());
 
 //Routes
 app.use("/api/v1", authRoutes);
+app.use("/api/v1", userRoutes);
 
 //PORT
 const port = process.env.PORT || 3001;
