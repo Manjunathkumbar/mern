@@ -28,6 +28,52 @@ export const getCategories = ()=>{
     .catch(err => console.log(err))
 }
 
+//delete a Category
+
+export const deleteCategory = (categoryId, userId, token) =>{
+    return fetch(`${API}/category/${categoryId}/${userId}`, {
+        method:"DELETE",
+        headers : {
+         Accept:"application/json",
+         Authorization:` Bearer ${token}`
+        }     
+    })
+    .then(response =>{
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}
+
+
+//get a Category
+export const getCategory = categoryId =>{
+    return fetch(`${API}/category/${categoryId}`, {
+        method:"GET"
+    })
+    .then(response =>{
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}
+
+
+//update a Category
+
+export const updateCategory = (categoryId, userId, token,  category) =>{
+    return fetch(`${API}/category/${categoryId}/${userId}`, {
+        method:"PUT",
+        headers : {
+         Accept:"application/json",
+         Authorization: ` Bearer ${token}`
+        },
+        body:category
+    })
+    .then(response =>{
+        return response.json()
+    })
+    .catch(err => console.log(err))
+}
+
 
 //products calls
 export const createProduct = (userId, token, product) =>{
@@ -60,12 +106,12 @@ export const getProducts = ()=>{
 
 //delete a product
 
-export const deleteProduct = (userId, token, productId) =>{
+export const deleteProduct = (productId, userId, token) =>{
     return fetch(`${API}/product/${productId}/${userId}`, {
         method:"DELETE",
         headers : {
          Accept:"application/json",
-         Authorization: ` Bearer ${token}`
+         Authorization:` Bearer ${token}`
         }     
     })
     .then(response =>{
@@ -89,7 +135,7 @@ export const getProduct = productId =>{
 
 //update a product
 
-export const updateProduct = (userId, token, productId,product) =>{
+export const updateProduct = (productId, userId, token,  product) =>{
     return fetch(`${API}/product/${productId}/${userId}`, {
         method:"PUT",
         headers : {

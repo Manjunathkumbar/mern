@@ -12,6 +12,7 @@ import ManageCategories from "./admin/ManageCategories";
 import AddProduct from "./admin/AddProduct";
 import ManageProducts from "./admin/ManageProducts";
 import UpdateThisProduct from "./admin/UpdateProduct";
+import Cart from "./core/Cart";
 
 
 
@@ -25,6 +26,7 @@ const Routes = ()=>{
             <Route path="/" exact component={Home} />
             <Route path="/signup" exact component={signup} />
             <Route path="/signin" exact component={signin} />
+            <Route path="/cart" exact component={Cart} />
             <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
             <AdminRoute path="/admin/dashboard" exact component={AdminDashBoard} />
             <AdminRoute path="/admin/create/category" exact component={AddCategory} />
