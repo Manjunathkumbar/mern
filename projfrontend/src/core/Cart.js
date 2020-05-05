@@ -6,34 +6,37 @@ import Card from "./Card";
 import { getProducts } from "./helper/coreapicalls";
 import { loadCart } from "./helper/CartHelper";
 import Home from "./Home";
+import Paymentb from "./Paymentb";
+
 
 const Cart=()=>{
     
 const [products, setProducts]=useState([]);
-const [error, setError]=useState(false);
+const [reload, setReload]=useState(false);
 
 
 
 useEffect(() =>{
-    setProducts(loadCart)
-}, [])
+    setProducts(loadCart());
+}, [reload]);
 
-const loadAllproducts =() =>{
-
-    return(
-        <div>
-            <h2>This Section is to Load cart products</h2>
-            {products.map((product, index) =>(
-                <Card
-                key={index}
-                product={product}
-                removeFromCart={true}
-                addtoCart={false}
-                />
-            ))}
-        </div>
-    )
-}
+const loadAllProducts = products => {
+    return (
+      <div>
+        <h2>This section is to load products</h2>
+        {products.map((product, index) => (
+          <Card
+            key={index}
+            product={product}
+            removeFromCart={true}
+            addtoCart={false}
+            setReload={setReload}
+            reload={reload}
+          />
+        ))}
+      </div>
+    );
+  };
 
 const loadCheckout =() =>{
     return(
@@ -48,11 +51,15 @@ const loadCheckout =() =>{
     return(
         <Base title="Cart Page" description="Ready to Check-out">
             <div className="row text-center">
-    <div className="col-6">{loadAllproducts()}</div>
-    <div className="col-6">{loadCheckout()}</div>
-                
-                    
-                </div>
+    <div className="col-6">{products.length > 0 ? loadAllProducts(products) : (<h4>NO products in Cart</h4>
+    )}
+    </div>
+    <div className="col-6">
+      <h3>checkout your purchses from here</h3>
+      <Paymentb products={products} setReload={setReload}/>
+
+    </div>         
+        </div>
         </Base>
     );
 }
